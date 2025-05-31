@@ -1,0 +1,3 @@
+.lsd files are located in game folder and don't have a System.json or Item.json
+
+RPGMAKER MV: Items.json every item has a consistent ID and a bunch of varying amounts of tags and categories. potentially options to enable which subcategories are viewable on hover

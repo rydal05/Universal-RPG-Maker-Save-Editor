@@ -33,6 +33,11 @@
             pageSetupDialog1 = new PageSetupDialog();
             saveFileTab = new TabControl();
             characterPage = new TabPage();
+            label3 = new Label();
+            label2 = new Label();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            label1 = new Label();
             inventoryPage = new TabPage();
             weaponsPage = new TabPage();
             armorsPage = new TabPage();
@@ -41,7 +46,9 @@
             itemPathLabel = new Label();
             systemButton = new Button();
             systemPathLabel = new Label();
+            button1 = new Button();
             saveFileTab.SuspendLayout();
+            characterPage.SuspendLayout();
             SuspendLayout();
             // 
             // saveFileButton
@@ -49,9 +56,9 @@
             saveFileButton.AutoSize = true;
             saveFileButton.Location = new Point(3, 4);
             saveFileButton.Name = "saveFileButton";
-            saveFileButton.Size = new Size(242, 35);
+            saveFileButton.Size = new Size(124, 35);
             saveFileButton.TabIndex = 0;
-            saveFileButton.Text = "Save File";
+            saveFileButton.Text = "Open File";
             saveFileButton.UseVisualStyleBackColor = true;
             saveFileButton.Click += button1_Click;
             // 
@@ -80,6 +87,11 @@
             // 
             // characterPage
             // 
+            characterPage.Controls.Add(label3);
+            characterPage.Controls.Add(label2);
+            characterPage.Controls.Add(textBox2);
+            characterPage.Controls.Add(textBox1);
+            characterPage.Controls.Add(label1);
             characterPage.Location = new Point(4, 34);
             characterPage.Name = "characterPage";
             characterPage.Padding = new Padding(3);
@@ -88,12 +100,56 @@
             characterPage.Text = "Character";
             characterPage.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(18, 125);
+            label3.Name = "label3";
+            label3.Size = new Size(51, 25);
+            label3.TabIndex = 4;
+            label3.Text = "MHP";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(18, 80);
+            label2.Name = "label2";
+            label2.Size = new Size(112, 25);
+            label2.TabIndex = 3;
+            label2.Text = "Char name 1";
+            // 
+            // textBox2
+            // 
+            textBox2.ForeColor = SystemColors.ScrollBar;
+            textBox2.Location = new Point(79, 122);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(150, 31);
+            textBox2.TabIndex = 2;
+            textBox2.Text = "Cur Val";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(98, 16);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(150, 31);
+            textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(27, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 25);
+            label1.TabIndex = 0;
+            label1.Text = "Gold";
+            // 
             // inventoryPage
             // 
             inventoryPage.Location = new Point(4, 34);
             inventoryPage.Name = "inventoryPage";
             inventoryPage.Padding = new Padding(3);
-            inventoryPage.Size = new Size(858, 597);
+            inventoryPage.Size = new Size(842, 662);
             inventoryPage.TabIndex = 1;
             inventoryPage.Text = "Inventory";
             inventoryPage.UseVisualStyleBackColor = true;
@@ -103,7 +159,7 @@
             weaponsPage.Location = new Point(4, 34);
             weaponsPage.Name = "weaponsPage";
             weaponsPage.Padding = new Padding(3);
-            weaponsPage.Size = new Size(858, 597);
+            weaponsPage.Size = new Size(842, 662);
             weaponsPage.TabIndex = 2;
             weaponsPage.Text = "Weapons";
             weaponsPage.UseVisualStyleBackColor = true;
@@ -113,7 +169,7 @@
             armorsPage.Location = new Point(4, 34);
             armorsPage.Name = "armorsPage";
             armorsPage.Padding = new Padding(3);
-            armorsPage.Size = new Size(858, 597);
+            armorsPage.Size = new Size(842, 662);
             armorsPage.TabIndex = 3;
             armorsPage.Text = "Armors";
             armorsPage.UseVisualStyleBackColor = true;
@@ -123,7 +179,7 @@
             variablesPage.Location = new Point(4, 34);
             variablesPage.Name = "variablesPage";
             variablesPage.Padding = new Padding(3);
-            variablesPage.Size = new Size(858, 597);
+            variablesPage.Size = new Size(842, 662);
             variablesPage.TabIndex = 4;
             variablesPage.Text = "Variables";
             variablesPage.UseVisualStyleBackColor = true;
@@ -170,12 +226,22 @@
             systemPathLabel.Text = "Path:";
             systemPathLabel.Click += systemPathLabel_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(133, 5);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 8;
+            button1.Text = "Save File";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
             ClientSize = new Size(878, 844);
+            Controls.Add(button1);
             Controls.Add(saveFileTab);
             Controls.Add(systemPathLabel);
             Controls.Add(systemButton);
@@ -183,10 +249,14 @@
             Controls.Add(itemsButton);
             Controls.Add(savePathLabel);
             Controls.Add(saveFileButton);
+            MaximumSize = new Size(900, 900);
+            MinimumSize = new Size(900, 900);
             Name = "Form1";
             Text = "Open Source RPG Maker Save Editor";
             Load += Form1_Load;
             saveFileTab.ResumeLayout(false);
+            characterPage.ResumeLayout(false);
+            characterPage.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -206,5 +276,11 @@
         private TabPage weaponsPage;
         private TabPage armorsPage;
         private TabPage variablesPage;
+        private Label label3;
+        private Label label2;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private Label label1;
+        private Button button1;
     }
 }

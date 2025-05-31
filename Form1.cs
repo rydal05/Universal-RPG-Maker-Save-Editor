@@ -1,3 +1,11 @@
+using System;
+using System.IO;
+using System.IO.Compression;
+using System.Runtime.Intrinsics.X86;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace Winforms_test
 {
     public partial class Form1 : Form
@@ -14,13 +22,15 @@ namespace Winforms_test
             string systemPath = null;
             using var openFileDialog = new OpenFileDialog
             {
-                Filter = "RPGMAKER 2000/2003 (*.lsd)|*.lsd|RPGMAKER XP (*.rxdata)|*.rxdata|RPGMAKER VX (*.rvdata)|*.rvdata|RPGMAKER VX Ace (*.rvdata2)|.rvdata2|RPGMAKER MV (*.rpgsave)|*.rpgsave",
+                Filter = "RPG Maker Save Files (*.lsd;*.rxdata;*.rvdata;*.rvdata2;*.rpgsave)|*.lsd;*.rxdata;*.rvdata;*.rvdata2;*.rpgsave",
                 Title = "Select a file"
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 selectedFilePath = openFileDialog.FileName;
                 savePathLabel.Text = "Path: " + selectedFilePath;
+                ConvertRpgSaveToJson(selectedFilePath);
+
                 itemPath = Path.Combine(Path.GetDirectoryName(selectedFilePath), "..", "data", "Items.json");
                 itemPath = Path.GetFullPath(itemPath);
 
@@ -29,7 +39,8 @@ namespace Winforms_test
                 if (File.Exists(itemPath))
                 {
                     itemPathLabel.Text = "Path: " + itemPath;
-                } else
+                }
+                else
                 {
                     itemPath = null;
                     itemPathLabel.Text = "Path: ";
@@ -38,7 +49,8 @@ namespace Winforms_test
                 if (File.Exists(systemPath))
                 {
                     systemPathLabel.Text = "Path: " + systemPath;
-                } else
+                }
+                else
                 {
                     systemPath = null;
                     systemPathLabel.Text = "Path: ";
@@ -97,5 +109,21 @@ namespace Winforms_test
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void updateMHP()
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
